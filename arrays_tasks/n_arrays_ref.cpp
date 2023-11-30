@@ -1,6 +1,13 @@
 #include <iostream>
 #include <ctime>
 #include "2DArrayFunctions.h"
+//#include "2DArrayFunctions.h" если получится так, что будет подключаться один и тот же заголовок несколько раз, то 
+// это можно решить следующим способом(см. в файле 2DArrayFunctions.h)
+//#include "Destroyer.h" Дважды будет инициализироваться переменная max_width
+
+//void weird();
+//void weird();
+//void weird(){} Объвлять можно сколь угодно раз, но определять только один
 
 
 int main() {
