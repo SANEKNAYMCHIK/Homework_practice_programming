@@ -1,4 +1,5 @@
 #include <iostream>
+#include "utils.h"
 #include "stdatabase.h"
 
 
@@ -16,14 +17,8 @@ int menu() {
     std::cout << "7. Sort students\n";
     std::cout << "8. Delete students\n";
     std::cout << "0. Exit\n";
-    int tmp;
-    std::cin >> tmp;
-    if (!std::cin.good()) {
-        std::cin.clear();
-        std::cin.ignore();
-        tmp = -1;
-    }
-    return tmp;
+    
+    return getInt();
 }
 
 
@@ -39,6 +34,9 @@ int main() {
             case 3: exportDB(DB, "student.txt"); break;
             case 4: printDB(DB); break;
             case 5: addRecord(DB); break;
+            case 6: setMarks(DB);
+            case 7: sort(DB); break;
+            case 8: deleteRecord(DB); break;
         }
     } while (action != 0);
     if (DB.data) {
