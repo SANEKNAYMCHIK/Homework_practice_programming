@@ -39,9 +39,6 @@ int main() {
             case 8: deleteRecord(DB); break;
         }
     } while (action != 0);
-    if (DB.data) {
-        delete[] DB.data;
-    }
-    
+    deleteDB(DB);
     return 0;
 }

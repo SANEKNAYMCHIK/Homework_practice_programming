@@ -2,10 +2,17 @@
 #define _ST_DATABASE_2023_
 #include "student.h"
 
+
+struct Node {
+    student data;
+    Node* next;
+};
+
+
 struct DataBase {
     int count;
-    int maxSize;
-    student* data;
+    Node* begin;
+    Node* end;
 };
 
 
@@ -14,12 +21,14 @@ int addRecord(DataBase& DB);
 void saveDB(const DataBase& DB, const char filename[]);
 int openDB(DataBase& DB, const char filename[]);
 void exportDB(const DataBase& DB, const char filename[]);
-int findRecord(const DataBase& DB);
+Node* findRecord(const DataBase& DB);
 void setMarks(const DataBase& DB);
 void deleteRecord(DataBase& DB);
 void sort(DataBase& DB);
+void deleteDB(DataBase& DB);
+void mySort(DataBase& DB, bool (*comparator)(const student&, const student&));
 
-template <typename T>
+/*template <typename T>
 void mySort(T* M, int size, bool (*comparator)(const T&, const T&)) {
     for (int i = 0; i < size; ++i) {
         int k = i;
@@ -32,7 +41,7 @@ void mySort(T* M, int size, bool (*comparator)(const T&, const T&)) {
             std::swap(M[i], M[k]);
         }
     }
-}
+}*/
 
 
 #endif
