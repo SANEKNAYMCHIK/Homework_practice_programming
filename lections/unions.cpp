@@ -36,12 +36,6 @@ union cod32 {
 };
 
 
-union codDouble {
-    double d;
-    cod32 X[2];
-};
-
-
 std::ostream& operator<< (std::ostream& out, const cod32& C) {
     out << C.x << ": ";
     for (int i = 3; i > -1; --i) {
@@ -55,16 +49,76 @@ std::ostream& operator<< (std::ostream& out, const cod32& C) {
 }
 
 
+union codDouble {
+    double d;
+    cod32 x[2];
+};
+
+
+std::ostream& operator<< (std::ostream& out, const codDouble& D) {
+    out << D.d << ": ";
+    for (int i = 3; i >= 0; --i) {
+        out << D.x[1].b[i];
+    }
+    for (int i = 3; i >= 0; --i) {
+        out << D.x[0].b[i];
+    }
+    return out;
+}
+
+
+union codFloat {
+    double d;
+    cod32 x;
+};
+
+
+std::ostream& operator<< (std::ostream& out, const codFloat& F) {
+    out << F.d << ": ";
+    for (int i = 3; i >= 0; --i) {
+        out << F.x.b[i];
+    }
+    return out;
+}
+
+
 int main() {
     bytecod S;
     for (S.x = 0; S.x < 32; ++S.x) {
         std::cout << (int)S.x << ": " << S << std::endl;
     }
     cod32 C;
-    for (C.x = 0; C.x < 3200; ++C.x) {
+    for (C.x = 0; C.x <= 3100; C.x+=100) {
         std::cout << C << std::endl;
     }
+
+    /* codDouble R;
+    R.d = 0.0;
+    std::cout << "R = " << R << std::endl;
+    do {
+        std::cout << "Input numenator: ";
+        double num;
+        std::cin >> num;
+        std::cout << "Input denuminator: ";
+        double denum;
+        std::cin >> denum;
+        R.d = num / denum;
+        std::cout << R << std::endl;
+    } while (R.d != 0.0); */
     
+    codFloat F;
+    F.d = 0.0;
+    std::cout << "F = " << F << std::endl;
+    do {
+        std::cout << "Input numenator: ";
+        double num;
+        std::cin >> num;
+        std::cout << "Input denuminator: ";
+        double denum;
+        std::cin >> denum;
+        F.d = num / denum;
+        std::cout << F << std::endl;
+    } while (F.d != 0.0);
     return 0;
 }
 
